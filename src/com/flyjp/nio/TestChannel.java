@@ -190,7 +190,7 @@ public class TestChannel {
             }
         }
         long end = System.currentTimeMillis();
-        System.out.println("耗费时间："+(end-start));
+        System.out.println("耗费时间："+(end-start)); 
     }
     
 }
