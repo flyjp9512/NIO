@@ -27,8 +27,25 @@ import java.nio.ByteBuffer;
  * position:位置，表示缓冲区中正在操作的数据位置。
  * mark：标记，表示记录当前position的位置。可以通过reset()恢复mark的位置
  * 0 <= mark <= position <= limit <= capacity
+ *
+ * 五、直接缓冲区与非直接缓冲区：
+ * 非直接缓冲区：通过allocate()方法分配缓冲区，将缓冲区建立在JVM的内存中
+ *      物理磁盘 read()-> 内核地址空间（OS） copy-> 用户地址空间（JVM） read()->应用程序
+ * 直接缓冲区：通过allocateDirect()方法分配直接缓冲区，将缓冲区建立在物理内存中。可以提高效率
+ *      物理磁盘 read()-> 物理内存映射文件（完全由系统控制） read()-> 应用程序
+ *      效率高但存在风险 分配消耗与销毁的资源大 不易控制
  */
 public class TestBuffer {
+
+    @Test
+    public void test3(){
+        //分配直接缓冲区
+        ByteBuffer buf = ByteBuffer.allocateDirect(1024);
+
+        System.out.println(buf.isDirect());//true
+
+
+    }
 
     @Test
     public void test2(){
